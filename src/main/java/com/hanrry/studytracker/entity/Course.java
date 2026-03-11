@@ -126,8 +126,8 @@ public class Course {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Module module)) return false;
-        return id != null && id.equals(module.id);
+        if (!(o instanceof Course course)) return false;
+        return id != null && id.equals(course.id);
     }
 
     @Override

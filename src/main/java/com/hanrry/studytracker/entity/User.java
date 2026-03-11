@@ -36,6 +36,9 @@ public class User  {
     @OneToMany(mappedBy = "user")
     private List<Course> courses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<LessonProgress> lessonProgresses = new ArrayList<>();
+
     public User(){
     }
 

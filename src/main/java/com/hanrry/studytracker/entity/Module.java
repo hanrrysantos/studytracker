@@ -21,7 +21,7 @@ public class Module {
     @Column(length = 200)
     private String description;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private int position;
 
     @Column(name = "created_at", nullable = false)
@@ -99,13 +99,13 @@ public class Module {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Module module = (Module) o;
-        return Objects.equals(getId(), module.getId());
+        if (this == o) return true;
+        if (!(o instanceof Module module)) return false;
+        return id != null && id.equals(module.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return getClass().hashCode();
     }
 }
