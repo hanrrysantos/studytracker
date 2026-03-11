@@ -19,7 +19,7 @@ public class StudySession {
     private String notes;
 
     @Column(name = "studied_at", nullable = false)
-    private LocalDateTime studiedAt;    
+    private LocalDateTime studiedAt;
 
     //ManyToOne User
     @ManyToOne(fetch = FetchType.LAZY)
