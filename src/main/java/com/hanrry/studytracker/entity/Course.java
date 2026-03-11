@@ -3,7 +3,6 @@ package com.hanrry.studytracker.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "courses")

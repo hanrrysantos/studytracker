@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
@@ -16,7 +15,7 @@ public class Category {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String title;
+    private String name;
 
     @Column(nullable = true, length = 200)
     private String description;
@@ -34,8 +33,8 @@ public class Category {
     public Category(){
     }
 
-    public Category(String title, String description, LocalDateTime createdAt, User user) {
-        this.title = title;
+    public Category(String name, String description, LocalDateTime createdAt, User user) {
+        this.name = name;
         this.description = description;
         this.createdAt = createdAt;
         this.user = user;
@@ -49,12 +48,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
