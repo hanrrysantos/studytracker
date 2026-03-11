@@ -3,6 +3,8 @@ package com.hanrry.studytracker.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,6 +29,12 @@ public class User  {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Category> categories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Course> courses = new ArrayList<>();
 
     public User(){
     }
@@ -85,6 +93,14 @@ public class User  {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 
     @Override
