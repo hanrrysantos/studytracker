@@ -37,7 +37,11 @@ public class Lesson {
     private Module module;
 
     @OneToMany(mappedBy = "lesson")
-    private List<LessonProgress> lessonProgresses = new ArrayList<>();
+    private List<LessonProgres> lessonProgresses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson")
+    private List<StudySession> studySessions = new ArrayList<>();
+
 
     public Lesson(){
     }
@@ -117,7 +121,7 @@ public class Lesson {
         this.module = module;
     }
 
-    public List<LessonProgress> getLessonProgresses() {
+    public List<LessonProgres> getLessonProgresses() {
         return lessonProgresses;
     }
 

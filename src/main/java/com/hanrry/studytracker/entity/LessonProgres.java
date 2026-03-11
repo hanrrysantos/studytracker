@@ -3,7 +3,6 @@ package com.hanrry.studytracker.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "lesson_progress",
@@ -11,7 +10,7 @@ import java.util.Objects;
         @UniqueConstraint(columnNames = {"user_id", "lesson_id"})
         }
     )
-public class LessonProgress {
+public class LessonProgres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +32,10 @@ public class LessonProgress {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
 
-    public LessonProgress(){
+    public LessonProgres(){
     }
 
-    public LessonProgress(boolean completed, LocalDateTime completedAt, User user, Lesson lesson) {
+    public LessonProgres(boolean completed, LocalDateTime completedAt, User user, Lesson lesson) {
         this.completed = completed;
         this.completedAt = completedAt;
         this.user = user;
@@ -86,8 +85,8 @@ public class LessonProgress {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LessonProgress lessonProgress)) return false;
-        return id != null && id.equals(lessonProgress.id);
+        if (!(o instanceof LessonProgres lessonProgres)) return false;
+        return id != null && id.equals(lessonProgres.id);
     }
 
     @Override
