@@ -3,6 +3,8 @@ package com.hanrry.studytracker.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -15,7 +17,7 @@ public class Course {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = true, length = 200)
+    @Column(length = 200)
     private String description;
 
     @Column(nullable = false)
@@ -35,6 +37,9 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "course")
+    private List<Module> modules = new ArrayList<>();
 
     public Course(){
     }
@@ -114,11 +119,15 @@ public class Course {
         this.user = user;
     }
 
+    public List<Module> getModules() {
+        return modules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Course course)) return false;
-        return id != null && id.equals(course.id);
+        if (!(o instanceof Module module)) return false;
+        return id != null && id.equals(module.id);
     }
 
     @Override

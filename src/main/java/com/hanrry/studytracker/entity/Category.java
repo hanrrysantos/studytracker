@@ -17,7 +17,7 @@ public class Category {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = true, length = 200)
+    @Column(length = 200)
     private String description;
 
     @Column(name = "created_at", nullable = false)
