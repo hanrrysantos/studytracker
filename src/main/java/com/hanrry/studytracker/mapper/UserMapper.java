@@ -2,6 +2,7 @@ package com.hanrry.studytracker.mapper;
 
 import com.hanrry.studytracker.dto.CreateUserRequestDTO;
 import com.hanrry.studytracker.dto.CreateUserResponseDTO;
+import com.hanrry.studytracker.dto.UpdateUserRequestDTO;
 import com.hanrry.studytracker.entity.User;
 import org.mapstruct.Mapper;
 
@@ -15,4 +16,6 @@ public interface UserMapper {
     CreateUserResponseDTO toDTO(User user);
 
     List<CreateUserResponseDTO> toDTOList(List<User> users);
+
+    User updateToE(UpdateUserRequestDTO updateUserRequestDTO);
 }
