@@ -4,7 +4,7 @@ import com.hanrry.studytracker.entity.CourseStatus;
 
 import java.time.LocalDateTime;
 
-public record CreateCourseResponseDTO(
+public record CourseResponseDTO(
         Long id,
         String title,
         String description,

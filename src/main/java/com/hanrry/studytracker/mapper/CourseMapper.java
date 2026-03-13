@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.mapper;
 
-import com.hanrry.studytracker.dto.CreateCourseRequestDTO;
-import com.hanrry.studytracker.dto.CreateCourseResponseDTO;
+import com.hanrry.studytracker.dto.CourseRequestDTO;
+import com.hanrry.studytracker.dto.CourseResponseDTO;
 import com.hanrry.studytracker.entity.Course;
 import org.mapstruct.Mapper;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CourseMapper {
 
-    Course toEntity(CreateCourseRequestDTO request);
+    Course toEntity(CourseRequestDTO request);
 
-    CreateCourseResponseDTO toDTO(Course course);
+    CourseResponseDTO toDTO(Course course);
 
-    List<CreateCourseResponseDTO> toDTOList(List<Course> requestDTOList);
+    List<CourseResponseDTO> toDTOList(List<Course> requestDTOList);
 
 }

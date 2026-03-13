@@ -1,6 +1,6 @@
 package com.hanrry.studytracker.dto;
 
-public record CreateCourseRequestDTO (
+public record CourseRequestDTO(
         String title,
         String description,
         Long userId,

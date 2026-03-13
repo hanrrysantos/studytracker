@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.service;
 
-import com.hanrry.studytracker.dto.CreateCategoryRequestDTO;
-import com.hanrry.studytracker.dto.CreateCategoryResponseDTO;
+import com.hanrry.studytracker.dto.CategoryRequestDTO;
+import com.hanrry.studytracker.dto.CategoryResponseDTO;
 import com.hanrry.studytracker.dto.UpdateCategoryRequestDTO;
 import com.hanrry.studytracker.entity.Category;
 import com.hanrry.studytracker.entity.User;
@@ -29,7 +29,7 @@ public class CategoryService {
     }
 
     //createCategory
-    public CreateCategoryResponseDTO createCategory(CreateCategoryRequestDTO request){
+    public CategoryResponseDTO createCategory(CategoryRequestDTO request){
         User user = userRepository.findById(request.userId()).orElseThrow(
                 () -> new ResourceNotFoundException("User not found with id: " + request.userId())
         );
@@ -44,7 +44,7 @@ public class CategoryService {
     }
 
     //findCategoryById
-    public CreateCategoryResponseDTO findCategoryById(Long id){
+    public CategoryResponseDTO findCategoryById(Long id){
         Category category = categoryRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not found with id: " + id)
         );
@@ -53,14 +53,14 @@ public class CategoryService {
     }
 
     //findAllCategory
-    public Page<CreateCategoryResponseDTO> findAllCategories(Pageable pageable){
+    public Page<CategoryResponseDTO> findAllCategories(Pageable pageable){
         Page<Category> categoriesPage = categoryRepository.findAll(pageable);
 
         return categoriesPage.map(categoryMapper::toDTO);
     }
 
     //updateCategory
-    public CreateCategoryResponseDTO updateCategory(Long id, UpdateCategoryRequestDTO request){
+    public CategoryResponseDTO updateCategory(Long id, UpdateCategoryRequestDTO request){
         Category category = categoryRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not found with id: " + id)
         );

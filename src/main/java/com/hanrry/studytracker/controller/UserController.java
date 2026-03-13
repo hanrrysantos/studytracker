@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.controller;
 
-import com.hanrry.studytracker.dto.CreateUserRequestDTO;
-import com.hanrry.studytracker.dto.CreateUserResponseDTO;
+import com.hanrry.studytracker.dto.UserRequestDTO;
+import com.hanrry.studytracker.dto.UserResponseDTO;
 import com.hanrry.studytracker.dto.UpdateUserRequestDTO;
 import com.hanrry.studytracker.service.UserService;
 import jakarta.validation.Valid;
@@ -25,40 +25,40 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponseDTO> createUser(
+    public ResponseEntity<UserResponseDTO> createUser(
             @Valid
-            @RequestBody CreateUserRequestDTO dto
+            @RequestBody UserRequestDTO dto
         ){
-        CreateUserResponseDTO user = userService.createUser(dto);
+        UserResponseDTO user = userService.createUser(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.id()).toUri();
         return ResponseEntity.created(uri).body(user);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<CreateUserResponseDTO> findUserById(
+    public ResponseEntity<UserResponseDTO> findUserById(
             @PathVariable Long id
     ){
-        CreateUserResponseDTO user = userService.findUserById(id);
+        UserResponseDTO user = userService.findUserById(id);
         return ResponseEntity.ok().body(user);
     }
 
     @GetMapping
-    public ResponseEntity<Page<CreateUserResponseDTO>> findAllUsers(
+    public ResponseEntity<Page<UserResponseDTO>> findAllUsers(
             @PageableDefault(size = 10, page = 0, sort = "id")
             Pageable pageable
     ){
-        Page<CreateUserResponseDTO> listAllUsers = userService.findAllUsers(pageable);
+        Page<UserResponseDTO> listAllUsers = userService.findAllUsers(pageable);
         return ResponseEntity.ok().body(listAllUsers);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CreateUserResponseDTO> updateUser(
+    public ResponseEntity<UserResponseDTO> updateUser(
             @PathVariable Long id,
             @Valid
             @RequestBody UpdateUserRequestDTO requestDTO
     ){
-        CreateUserResponseDTO user = userService.updateUser(id, requestDTO);
+        UserResponseDTO user = userService.updateUser(id, requestDTO);
         return ResponseEntity.ok().body(user);
     }
 

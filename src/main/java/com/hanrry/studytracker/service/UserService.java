@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.service;
 
-import com.hanrry.studytracker.dto.CreateUserRequestDTO;
-import com.hanrry.studytracker.dto.CreateUserResponseDTO;
+import com.hanrry.studytracker.dto.UserRequestDTO;
+import com.hanrry.studytracker.dto.UserResponseDTO;
 import com.hanrry.studytracker.dto.UpdateUserRequestDTO;
 import com.hanrry.studytracker.entity.Role;
 import com.hanrry.studytracker.entity.User;
@@ -29,7 +29,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public CreateUserResponseDTO createUser(CreateUserRequestDTO request){
+    public UserResponseDTO createUser(UserRequestDTO request){
 
         if(userRepository.existsByEmail(request.email())){
             throw new EmailAlreadyExistsException("Email already exists");
@@ -46,7 +46,7 @@ public class UserService {
         return userMapper.toDTO(savedUser);
     }
 
-    public CreateUserResponseDTO findUserById(Long id){
+    public UserResponseDTO findUserById(Long id){
         User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("User not found with id: " + id)
         );
@@ -54,14 +54,14 @@ public class UserService {
         return userMapper.toDTO(user);
     }
 
-    public Page<CreateUserResponseDTO> findAllUsers(Pageable pageable) {
+    public Page<UserResponseDTO> findAllUsers(Pageable pageable) {
 
         Page<User> usersPage = userRepository.findAll(pageable);
 
         return usersPage.map(userMapper::toDTO);
     }
 
-    public CreateUserResponseDTO updateUser(Long id, UpdateUserRequestDTO updateUserRequestDTO){
+    public UserResponseDTO updateUser(Long id, UpdateUserRequestDTO updateUserRequestDTO){
         User user = userRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("User not found with id: " + id)
         );

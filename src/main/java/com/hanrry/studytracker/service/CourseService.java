@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.service;
 
-import com.hanrry.studytracker.dto.CreateCourseRequestDTO;
-import com.hanrry.studytracker.dto.CreateCourseResponseDTO;
+import com.hanrry.studytracker.dto.CourseRequestDTO;
+import com.hanrry.studytracker.dto.CourseResponseDTO;
 import com.hanrry.studytracker.dto.UpdateCourseRequestDTO;
 import com.hanrry.studytracker.entity.Category;
 import com.hanrry.studytracker.entity.Course;
@@ -37,7 +37,7 @@ public class CourseService {
         this.courseMapper = courseMapper;
     }
 
-    public CreateCourseResponseDTO createCourse(CreateCourseRequestDTO request){
+    public CourseResponseDTO createCourse(CourseRequestDTO request){
         User user = userRepository.findById(request.userId()).orElseThrow(
                 () -> new ResourceNotFoundException("User not found with id: " + request.userId())
         );
@@ -62,7 +62,7 @@ public class CourseService {
         return courseMapper.toDTO(savedCourse);
     }
 
-    public CreateCourseResponseDTO findCourseById(Long id) {
+    public CourseResponseDTO findCourseById(Long id) {
         Course course = courseRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Course not found with id: " + id)
         );
@@ -70,13 +70,13 @@ public class CourseService {
         return courseMapper.toDTO(course);
     }
 
-    public Page<CreateCourseResponseDTO> findAllCourses(Pageable pageable){
+    public Page<CourseResponseDTO> findAllCourses(Pageable pageable){
         Page<Course> coursePage = courseRepository.findAll(pageable);
 
         return coursePage.map(courseMapper::toDTO);
     }
 
-    public CreateCourseResponseDTO updateCourse(Long id, UpdateCourseRequestDTO request){
+    public CourseResponseDTO updateCourse(Long id, UpdateCourseRequestDTO request){
         Course course = courseRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Course not found with id: " + id)
         );

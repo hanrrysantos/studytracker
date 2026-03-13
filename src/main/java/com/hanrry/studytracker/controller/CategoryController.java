@@ -23,43 +23,43 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateCategoryResponseDTO> createCategory(
+    public ResponseEntity<CategoryResponseDTO> createCategory(
             @Valid
             @RequestBody
-            CreateCategoryRequestDTO request){
+            CategoryRequestDTO request){
 
-        CreateCategoryResponseDTO category = categoryService.createCategory(request);
+        CategoryResponseDTO category = categoryService.createCategory(request);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(category.id()).toUri();
         return ResponseEntity.created(uri).body(category);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<CreateCategoryResponseDTO> findCategoryById(@PathVariable  Long id){
+    public ResponseEntity<CategoryResponseDTO> findCategoryById(@PathVariable  Long id){
 
-        CreateCategoryResponseDTO category = categoryService.findCategoryById(id);
+        CategoryResponseDTO category = categoryService.findCategoryById(id);
 
         return ResponseEntity.ok().body(category);
 
     }
 
     @GetMapping
-    public ResponseEntity<Page<CreateCategoryResponseDTO>> listAllCategories(
+    public ResponseEntity<Page<CategoryResponseDTO>> listAllCategories(
             @PageableDefault(size = 10, page = 0, sort = "id")
             Pageable pageable){
 
-        Page<CreateCategoryResponseDTO> categoriesPages = categoryService.findAllCategories(pageable);
+        Page<CategoryResponseDTO> categoriesPages = categoryService.findAllCategories(pageable);
 
         return ResponseEntity.ok().body(categoriesPages);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CreateCategoryResponseDTO> updateCategory(
+    public ResponseEntity<CategoryResponseDTO> updateCategory(
             @PathVariable Long id,
             @Valid
             @RequestBody UpdateCategoryRequestDTO request){
 
-        CreateCategoryResponseDTO category = categoryService.updateCategory(id, request);
+        CategoryResponseDTO category = categoryService.updateCategory(id, request);
 
         return ResponseEntity.ok().body(category);
     }
