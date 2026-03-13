@@ -22,7 +22,7 @@ public class Module {
     private String description;
 
     @Column(nullable = false)
-    private int position;
+    private Integer position;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -73,7 +73,7 @@ public class Module {
         return position;
     }
 
-    public void setPosition(int position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
