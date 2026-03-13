@@ -1,7 +1,7 @@
 package com.hanrry.studytracker.dto;
 
-public record UpdateCategoryRequestDTO(
+public record UpdateCategoryRequestDTO (
         String name,
         String description
-) {
+){
 }
