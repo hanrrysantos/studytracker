@@ -100,6 +100,7 @@ public class CourseService {
     }
 
     public void deleteById(Long id){
+        findCourseById(id);
         courseRepository.deleteById(id);
     }
 }
