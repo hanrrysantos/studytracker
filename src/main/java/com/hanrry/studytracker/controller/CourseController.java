@@ -1,10 +1,12 @@
 package com.hanrry.studytracker.controller;
 
+import com.hanrry.studytracker.controller.docs.CourseControllerDocs;
 import com.hanrry.studytracker.dto.CourseRequestDTO;
 import com.hanrry.studytracker.dto.CourseResponseDTO;
 import com.hanrry.studytracker.dto.UpdateCourseRequestDTO;
 import com.hanrry.studytracker.service.CourseService;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -16,7 +18,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/api/v1/courses")
-public class CourseController {
+public class CourseController implements CourseControllerDocs {
 
     private final CourseService courseService;
 
@@ -25,6 +27,7 @@ public class CourseController {
     }
 
     @PostMapping
+    @Override
     public ResponseEntity<CourseResponseDTO> createCourse(
             @Valid
             @RequestBody CourseRequestDTO request
@@ -36,8 +39,9 @@ public class CourseController {
     }
 
     @GetMapping(value = "/{id}")
+    @Override
     public ResponseEntity<CourseResponseDTO> findCourseById(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ){
         CourseResponseDTO course = courseService.findCourseById(id);
 
@@ -45,8 +49,10 @@ public class CourseController {
     }
 
     @GetMapping
+    @Override
     public ResponseEntity<Page<CourseResponseDTO>> findAllCourses(
-            @PageableDefault(size = 10, page = 0, sort = "id")
+            @ParameterObject
+            @PageableDefault(size = 5, sort = "id")
             Pageable pageable
     ){
         Page<CourseResponseDTO> course = courseService.findAllCourses(pageable);
@@ -55,8 +61,9 @@ public class CourseController {
     }
 
     @PutMapping(value = "/{id}")
+    @Override
     public ResponseEntity<CourseResponseDTO> updateCourse(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid
             @RequestBody UpdateCourseRequestDTO request
     ){
@@ -66,7 +73,10 @@ public class CourseController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
+    @Override
+    public ResponseEntity<Void> deleteCourse(
+            @PathVariable("id") Long id
+    ) {
         courseService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

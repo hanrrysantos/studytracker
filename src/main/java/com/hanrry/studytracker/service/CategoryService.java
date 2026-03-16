@@ -28,7 +28,6 @@ public class CategoryService {
         this.categoryMapper = categoryMapper;
     }
 
-    //createCategory
     public CategoryResponseDTO createCategory(CategoryRequestDTO request){
         User user = userRepository.findById(request.userId()).orElseThrow(
                 () -> new ResourceNotFoundException("User not found with id: " + request.userId())
@@ -43,7 +42,6 @@ public class CategoryService {
         return categoryMapper.toDTO(savedCategory);
     }
 
-    //findCategoryById
     public CategoryResponseDTO findCategoryById(Long id){
         Category category = categoryRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not found with id: " + id)
@@ -52,14 +50,12 @@ public class CategoryService {
         return categoryMapper.toDTO(category);
     }
 
-    //findAllCategory
     public Page<CategoryResponseDTO> findAllCategories(Pageable pageable){
         Page<Category> categoriesPage = categoryRepository.findAll(pageable);
 
         return categoriesPage.map(categoryMapper::toDTO);
     }
 
-    //updateCategory
     public CategoryResponseDTO updateCategory(Long id, UpdateCategoryRequestDTO request){
         Category category = categoryRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Category not found with id: " + id)
@@ -73,7 +69,6 @@ public class CategoryService {
         return categoryMapper.toDTO(savedCategory);
     }
 
-    //deleteCategoryById
     public void deleteCategoryById(Long id){
         findCategoryById(id);
         categoryRepository.deleteById(id);

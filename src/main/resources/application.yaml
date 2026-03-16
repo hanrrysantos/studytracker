@@ -2,21 +2,19 @@ spring:
   application:
     name: study-tracker
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/studytracker?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: 1234
+  profiles:
+    active: dev
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: true
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
 jwt:
-  secret: studytracker-jwt-secret-key-muito-segura-2026-hanrry
+  secret: ${JWT_SECRET}
   expiration: 86400000
+
+springdoc:
+  swagger-ui:
+    operations-sorter: alpha

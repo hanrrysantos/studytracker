@@ -1,5 +1,6 @@
 package com.hanrry.studytracker.controller;
 
+import com.hanrry.studytracker.controller.docs.DashboardControllerDocs;
 import com.hanrry.studytracker.dto.DashboardResponseDTO;
 import com.hanrry.studytracker.service.DashboardService;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/v1/dashboard")
-public class DashboardController {
+public class DashboardController implements DashboardControllerDocs {
 
 
     private final DashboardService dashboardService;
@@ -20,7 +21,9 @@ public class DashboardController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<DashboardResponseDTO> findDashboard(@PathVariable Long id){
+    public ResponseEntity<DashboardResponseDTO> findDashboard(
+            @PathVariable("id") Long id
+    ){
         DashboardResponseDTO dashboard = dashboardService.getDashboard(id);
         return ResponseEntity.ok().body(dashboard);
     }

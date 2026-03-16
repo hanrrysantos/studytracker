@@ -28,7 +28,6 @@ public class LessonService {
         this.lessonRepository = lessonRepository;
     }
 
-    //create
     public LessonResponseDTO createLesson(LessonRequestDTO request){
         Module module = moduleRepository.findById(request.moduleId()).orElseThrow(
                 () -> new ResourceNotFoundException("Module not found with id: " + request.moduleId())
@@ -43,7 +42,6 @@ public class LessonService {
         return lessonMapper.toDTO(savedLesson);
     }
 
-    //findbyid
     public LessonResponseDTO findLessonById(Long id){
         Lesson lesson = lessonRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Lesson not found with id: " + id)
@@ -52,14 +50,12 @@ public class LessonService {
         return lessonMapper.toDTO(lesson);
     }
 
-    //findall
     public Page<LessonResponseDTO> findAllLessons(Pageable pageable){
         Page<Lesson> lessonPage = lessonRepository.findAll(pageable);
 
         return lessonPage.map(lessonMapper::toDTO);
     }
 
-    //update
     public LessonResponseDTO updateLesson(Long id, UpdateLessonRequestDTO request){
         Lesson lesson = lessonRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Lesson not found with id: " + id)
@@ -76,7 +72,6 @@ public class LessonService {
         return lessonMapper.toDTO(savedLesson);
     }
 
-    //delete
     public void deleteLesson(Long id){
         findLessonById(id);
         lessonRepository.deleteById(id);

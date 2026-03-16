@@ -21,12 +21,10 @@ public class StudySession {
     @Column(name = "studied_at", nullable = false)
     private LocalDateTime studiedAt;
 
-    //ManyToOne User
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    //ManyToOneLesson
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;

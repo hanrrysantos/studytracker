@@ -1,5 +1,7 @@
 package com.hanrry.studytracker.controller;
 
+import com.hanrry.studytracker.controller.docs.LessonControllerDocs;
+import com.hanrry.studytracker.controller.docs.LessonProgressControllerDocs;
 import com.hanrry.studytracker.dto.LessonProgressRequestDTO;
 import com.hanrry.studytracker.dto.LessonProgressResponseDTO;
 import com.hanrry.studytracker.service.LessonProgressService;
@@ -12,7 +14,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/api/v1/lesson-progress")
-public class LessonProgressController {
+public class LessonProgressController implements LessonProgressControllerDocs {
 
     private final LessonProgressService lessonProgressService;
 
@@ -21,6 +23,7 @@ public class LessonProgressController {
     }
 
     @PostMapping(value = "/complete")
+    @Override
     public ResponseEntity<LessonProgressResponseDTO> completeLesson(
             @Valid
             @RequestBody LessonProgressRequestDTO request){
@@ -31,6 +34,7 @@ public class LessonProgressController {
     }
 
     @PostMapping(value = "/uncomplete")
+    @Override
     public ResponseEntity<LessonProgressResponseDTO> unCompleteLesson(
             @Valid
             @RequestBody LessonProgressRequestDTO request){
@@ -39,9 +43,10 @@ public class LessonProgressController {
     }
 
     @GetMapping
+    @Override
     public ResponseEntity<LessonProgressResponseDTO> findProgress(
-            @RequestParam Long userId,
-            @RequestParam Long lessonId
+            @RequestParam("userId") Long userId,
+            @RequestParam("lessonId") Long lessonId
     ){
         LessonProgressResponseDTO lesson = lessonProgressService.findProgress(userId, lessonId);
         return ResponseEntity.ok().body(lesson);

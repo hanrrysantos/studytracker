@@ -22,12 +22,10 @@ public class LessonProgress {
     @Column(name = "completed_at")
     private LocalDateTime completedAt;
 
-    //Relacionamento com User
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    //Relacionamento com Lesson
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;

@@ -1,10 +1,12 @@
 package com.hanrry.studytracker.controller;
 
+import com.hanrry.studytracker.controller.docs.ModuleControllerDocs;
 import com.hanrry.studytracker.dto.ModuleRequestDTO;
 import com.hanrry.studytracker.dto.ModuleResponseDTO;
 import com.hanrry.studytracker.dto.UpdateModuleRequestDTO;
 import com.hanrry.studytracker.service.ModuleService;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -16,7 +18,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/api/v1/modules")
-public class ModuleController {
+public class ModuleController implements ModuleControllerDocs {
 
     private final ModuleService moduleService;
 
@@ -24,8 +26,8 @@ public class ModuleController {
         this.moduleService = moduleService;
     }
 
-    //create
     @PostMapping
+    @Override
     public ResponseEntity<ModuleResponseDTO> createModule(
             @Valid
             @RequestBody ModuleRequestDTO request
@@ -36,29 +38,30 @@ public class ModuleController {
         return ResponseEntity.created(uri).body(module);
     }
 
-    //findById
     @GetMapping(value = "/{id}")
+    @Override
     public ResponseEntity<ModuleResponseDTO> findModuleById(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ){
         ModuleResponseDTO module = moduleService.findModuleById(id);
         return ResponseEntity.ok().body(module);
     }
 
-    //findAll
     @GetMapping
+    @Override
     public ResponseEntity<Page<ModuleResponseDTO>> findAllModules(
-            @PageableDefault(size = 10, page = 0, sort = "id")
+            @ParameterObject
+            @PageableDefault(size = 5, sort = "id")
             Pageable pageable
     ){
         Page<ModuleResponseDTO> modulePage = moduleService.findAllModules(pageable);
         return ResponseEntity.ok().body(modulePage);
     }
 
-    //update
     @PutMapping(value = "/{id}")
+    @Override
     public ResponseEntity<ModuleResponseDTO> updateModule(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid
             @RequestBody UpdateModuleRequestDTO request
     ){
@@ -66,10 +69,10 @@ public class ModuleController {
         return ResponseEntity.ok().body(module);
     }
 
-    //delete
     @DeleteMapping(value = "/{id}")
+    @Override
     public ResponseEntity<Void> deleteModule(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ){
         moduleService.deleteModule(id);
         return ResponseEntity.noContent().build();

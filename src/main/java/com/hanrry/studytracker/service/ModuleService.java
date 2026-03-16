@@ -28,7 +28,6 @@ public class ModuleService {
         this.courseRepository = courseRepository;
     }
 
-    //create
     public ModuleResponseDTO createModule(ModuleRequestDTO request){
         Course course = courseRepository.findById(request.courseId()).orElseThrow(
                 () -> new ResourceNotFoundException("Course not found with id: " + request.courseId())
@@ -44,7 +43,6 @@ public class ModuleService {
         return moduleMapper.toDTO(savedModule);
     }
 
-    //findById
     public ModuleResponseDTO findModuleById(Long id){
         Module module = moduleRepository.findById(id).orElseThrow(
                 () ->  new ResourceNotFoundException("Module not found with id: " + id)
@@ -53,14 +51,12 @@ public class ModuleService {
         return moduleMapper.toDTO(module);
     }
 
-    //findAll
     public Page<ModuleResponseDTO> findAllModules(Pageable pageable){
         Page<Module> modulePage = moduleRepository.findAll(pageable);
 
         return modulePage.map(moduleMapper::toDTO);
     }
 
-    //update
     public ModuleResponseDTO updateModule(Long id, UpdateModuleRequestDTO request){
         Module module = moduleRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Module not found with id: " + id)
@@ -75,7 +71,6 @@ public class ModuleService {
         return moduleMapper.toDTO(savedModule);
     }
 
-    //delete
     public void deleteModule(Long id){
         findModuleById(id);
         moduleRepository.deleteById(id);
