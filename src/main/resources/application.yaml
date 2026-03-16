@@ -16,3 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: studytracker-jwt-secret-key-muito-segura-2026-hanrry
+  expiration: 86400000

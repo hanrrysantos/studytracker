@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
         @UniqueConstraint(columnNames = {"user_id", "lesson_id"})
         }
     )
-public class LessonProgres {
+public class LessonProgress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +32,10 @@ public class LessonProgres {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
 
-    public LessonProgres(){
+    public LessonProgress(){
     }
 
-    public LessonProgres(boolean completed, LocalDateTime completedAt, User user, Lesson lesson) {
+    public LessonProgress(boolean completed, LocalDateTime completedAt, User user, Lesson lesson) {
         this.completed = completed;
         this.completedAt = completedAt;
         this.user = user;
@@ -85,8 +85,8 @@ public class LessonProgres {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LessonProgres lessonProgres)) return false;
-        return id != null && id.equals(lessonProgres.id);
+        if (!(o instanceof LessonProgress lessonProgress)) return false;
+        return id != null && id.equals(lessonProgress.id);
     }
 
     @Override
