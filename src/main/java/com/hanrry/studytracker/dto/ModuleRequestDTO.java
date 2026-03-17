@@ -1,5 +1,6 @@
 package com.hanrry.studytracker.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,6 +15,7 @@ public record ModuleRequestDTO (
         Integer position,
 
         @NotNull(message = "The id cannot be null")
+        @Schema(example = "1")
         Long courseId
 ){
 }
