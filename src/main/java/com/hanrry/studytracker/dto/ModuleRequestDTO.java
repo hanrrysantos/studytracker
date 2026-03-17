@@ -12,6 +12,7 @@ public record ModuleRequestDTO (
         String description,
 
         @NotNull(message = "The position cannot be null")
+        @Schema(example = "5")
         Integer position,
 
         @NotNull(message = "The id cannot be null")

@@ -18,6 +18,7 @@ public record StudySessionRequestDTO (
 
         @NotNull(message = "Duration is required")
         @Positive(message = "Duration must be greater than zero")
+        @Schema(example = "20")
         Integer durationMinutes,
 
         String notes,
