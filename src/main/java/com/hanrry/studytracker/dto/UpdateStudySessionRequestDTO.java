@@ -10,6 +10,7 @@ public record UpdateStudySessionRequestDTO(
         @Schema(example = "1")
         Long lessonId,
         @Positive(message = "Duration must be greater than zero")
+        @Schema(example = "20")
         Integer durationMinutes,
         String notes,
         LocalDateTime studiedAt
