@@ -3,7 +3,7 @@ spring:
     name: study-tracker
 
   profiles:
-    active: dev
+    active: prod
 
   datasource:
     url: ${DB_URL}
