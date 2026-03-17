@@ -75,6 +75,13 @@ O projeto segue o padrão em camadas (**Layered Architecture**) para garantir de
 A API está online e pronta para testes através da documentação interativa: 
 https://studytracker-8uxv.onrender.com/swagger-ui/index.html
 
+1. Acesse o Swagger
+2. Utilize o endpoint /auth/login com um usuário existente
+3. Copie o token JWT retornado
+4. Clique no botão "Authorize" no Swagger
+5. Cole o token no formato: Bearer {token}
+6. Agora você pode acessar os endpoints protegidos
+
 ---
 ## 💾 Instalação e Execução
 
